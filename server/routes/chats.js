@@ -13,6 +13,7 @@ router.get('/', (req, res, next) => {
 
 router.post('/', (req, res, next) => {
   Chat.create({
+    id: req.body.id,
     name: req.body.name,
     message: req.body.message
   }).then((data) => {
@@ -24,6 +25,7 @@ router.post('/', (req, res, next) => {
 
 router.put('/:id', (req, res, next) => {
   Chat.findByIdAndUpdate(req.params.id, {
+    id: req.body.id,
     name: req.body.name,
     message: req.body.message
   }, {
