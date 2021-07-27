@@ -44,4 +44,22 @@ describe("chats", function () {
           done()
       });
   });
+
+  it('seharusnya dapat menambahkan satu data dengan metode POST', done => {
+    chai.request(server)
+      .post('/api/chats')
+      .send({'id': 1, 'name': 'Dwiko', 'message': 'Sindang Laya'})
+      .end((err, res) => {  
+        res.should.have.status(201);
+        res.should.be.json;
+        res.body.should.be.a('object');
+        res.body.should.have.property('id');
+        res.body.should.have.property('name');
+        res.body.should.have.property('message');
+        res.body.id.should.equal(1);
+        res.body.name.should.equal('Dwiko');
+        res.body.message.should.equal('Sindang Laya');
+        done()
+      })
+  })
 });
