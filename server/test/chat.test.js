@@ -1,0 +1,47 @@
+"use strict";
+
+const chai = require("chai");
+const chaiHTTP = require("chai-http");
+
+const server = require("../app");
+const Chat = require("../models/chat");
+
+const should = chai.should();
+chai.use(chaiHTTP);
+
+describe("chats", function () {
+  Chat.collection.drop();
+
+  beforeEach((done) => {
+    let chat = new Chat({
+      id: 1,
+      name: "Dwiko",
+      message: "Sinlay",
+    });
+    chat.save((err) => {
+      done();
+    });
+  });
+
+  afterEach((done) => {
+    Chat.collection.drop();
+    done();
+  });
+
+  it('seharusnya mendapatkan semua daftar pesan yang ada di table CHAT dengan metode GET', done => {
+      chai.request(server)
+      .get('/api/chats')
+      .end((err, res) => {
+          res.should.have.status(200);
+          res.should.be.json;
+          res.body.should.be.a('array');
+          res.body[0].should.have.property('id');
+          res.body[0].should.have.property('name');
+          res.body[0].should.have.property('message');
+          res.body[0].id.should.equal(1);
+          res.body[0].name.should.equal('Dwiko');
+          res.body[0].message.should.equal('Sinlay');
+          done()
+      });
+  });
+});
