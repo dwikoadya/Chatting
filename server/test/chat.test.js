@@ -60,6 +60,26 @@ describe("chats", function () {
         res.body.name.should.equal('Dwiko');
         res.body.message.should.equal('Sindang Laya');
         done()
-      })
-  })
+      });
+  });
+
+  it('seharusnya dapat menghapus satu data dengan metode DELETE', done => {
+    chai.request(server)
+      .get('/api/chats')
+      .end((err, res) => {
+        chai.request(server)
+        .delete('/api/chats/'+res.body[0]._id)
+        .end((error, response) => {
+          response.should.have.status(201);
+          response.should.be.json;
+          response.should.be.a('object');
+          response.body.should.have.property('id');
+          response.body.should.have.property('name');
+          response.body.should.have.property('message');
+          response.body.should.have.property('_id');
+          response.body.name.should.equal('Dwiko');
+          done();
+        });
+      });
+  });
 });
