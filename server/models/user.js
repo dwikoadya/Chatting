@@ -3,12 +3,13 @@ const bcrypt = require('bcrypt');
 const saltRounds = 10
 
 const userSchema = new mongoose.Schema({
+    userName: { type: String, required: true},
     email: { type: String, required: true},
     password: { type: String, required: true},
     token: { type: String}
 })
 
-userSchema.pre('save', next => {
+userSchema.pre('save', function (next){
     bcrypt.hash(this.password, saltRounds, (err, hash) => {
         if (err) console.log(err)
         else {

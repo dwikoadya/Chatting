@@ -3,10 +3,11 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const mongoose = require('mongoose')
+const session = require('express-session')
 
 var chatRouter = require('./routes/chats');
+var userRouter = require('./routes/users');
 var indexRouter = require('./routes/index');
-var userRouter = require('./routes/users')
 
 mongoose.connect('mongodb://localhost:27017/chattingdb', {useNewUrlParser: true, useUnifiedTopology: true}) 
 
