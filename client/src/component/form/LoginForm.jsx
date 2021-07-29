@@ -5,7 +5,6 @@ import Password from "../input/Password";
 import Card from "../Card";
 
 export default function LoginForm() {
-  // const { register, handleSubmit } = useForm()
   return (
     <div className="container vh-100">
       <div className="row vh-100">

@@ -7,6 +7,7 @@ import {
 import Register from '../screens/Register'
 import Login from '../screens/Login'
 import Chat from '../screens/Chat'
+import Home from '../screens/Home'
 import Navigation from './helper/Navigation'
 
 export default function Base() {
@@ -15,13 +16,16 @@ export default function Base() {
       <Navigation />
       <Switch>
         <Route exact path="/">
-          <Chat />
+          <Home />
         </Route>
         <Route path="/login">
           <Login />
         </Route>
         <Route path="/register">
           <Register />
+        </Route>
+        <Route path="/chat">
+          <Chat />
         </Route>
       </Switch>
     </Router>

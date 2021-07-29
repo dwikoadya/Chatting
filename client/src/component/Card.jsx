@@ -6,7 +6,7 @@ export default function Card(props) {
     <div className="card">
       <div className="card-body">
         {
-          title && <h4 className="card-title"> {title} </h4>
+          <h4 className="card-title"> {title} </h4>
         }
         {children}
       </div>

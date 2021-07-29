@@ -10,8 +10,10 @@ export default function RegisterForm() {
         <div className="col self-align-center">
           <Card title="Register">
             <form>
+              <Text label="Username" id="username" name="username" />
               <Text label="Email" id="email" name="email" />
-              <Password label="Password" id="password" name="password" />
+              <Password label="Password" id="password" name="password"/>
+              <Password label="Confirm Password" id="retype" name="retype"/>
               <button className="btn btn-primary" type="submit"> Register </button>
             </form>
           </Card>
