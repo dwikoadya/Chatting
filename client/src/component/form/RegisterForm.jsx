@@ -1,7 +1,7 @@
-import React from 'react'
-import Text from '../input/Text'
-import Password from '../input/Password'
-import Card from '../Card'
+import React from "react";
+import Text from "../input/Text";
+import Password from "../input/Password";
+import Card from "../Card";
 
 export default function RegisterForm() {
   return (
@@ -12,13 +12,15 @@ export default function RegisterForm() {
             <form>
               <Text label="Username" id="username" name="username" />
               <Text label="Email" id="email" name="email" />
-              <Password label="Password" id="password" name="password"/>
-              <Password label="Confirm Password" id="retype" name="retype"/>
-              <button className="btn btn-primary" type="submit"> Register </button>
+              <Password label="Password" id="password" name="password" />
+              <Password label="Confirm Password" id="retype" name="retype" />
+              <button className="btn btn-primary" type="submit">
+                Register
+              </button>
             </form>
           </Card>
         </div>
       </div>
     </div>
-  )
+  );
 }
