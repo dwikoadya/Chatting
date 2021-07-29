@@ -13,7 +13,9 @@ export default function LoginForm() {
             <form>
               <Text label="Email" id="standard-basic" name="email" />
               <Password label="Password" id="password" name="password" />
-              <button className="btn btn-primary" type="submit"> Login </button>
+              <button className="btn btn-primary" type="submit">
+                Login
+              </button>
             </form>
           </Card>
         </div>
