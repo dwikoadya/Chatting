@@ -6,7 +6,7 @@ const chaiHTTP = require("chai-http");
 const server = require("../app");
 const User = require("../models/user");
 
-var should = chai.should();
+const should = chai.should();
 
 chai.use(chaiHTTP);
 
