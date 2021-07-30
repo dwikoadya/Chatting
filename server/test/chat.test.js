@@ -10,7 +10,7 @@ const should = chai.should();
 chai.use(chaiHTTP);
 
 describe("chats", function () {
-  Chat.collection.drop();
+  // Chat.collection.drop();
 
   beforeEach((done) => {
     let chat = new Chat({
@@ -25,7 +25,7 @@ describe("chats", function () {
   });
 
   afterEach((done) => {
-    Chat.collection.drop();
+    // Chat.collection.drop();
     done();
   });
 
@@ -33,6 +33,7 @@ describe("chats", function () {
       chai.request(server)
       .get('/api/chats')
       .end((err, res) => {
+          if (err) console.log(err)
           res.should.have.status(200);
           res.should.be.json;
           res.body.should.be.a('array');
@@ -51,6 +52,7 @@ describe("chats", function () {
       .post('/api/chats')
       .send({'id': 1, 'name': 'Dwiko', 'message': 'Belajar TDD'})
       .end((err, res) => {  
+        if (err) console.log(err)
         res.should.have.status(201);
         res.should.be.json;
         res.body.should.be.a('object');
@@ -68,9 +70,11 @@ describe("chats", function () {
     chai.request(server)
       .get('/api/chats')
       .end((err, res) => {
+        if (err) console.log(err)
         chai.request(server)
         .delete('/api/chats/'+res.body[0]._id)
         .end((error, response) => {
+          if (error) throw (error)
           response.should.have.status(201);
           response.should.be.json;
           response.should.be.a('object');
