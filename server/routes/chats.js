@@ -27,7 +27,7 @@ router.post('/', (req, res,) => {
 })
 
 router.put('/:id', (req, res) => {
-  Chat.findOneAndUpdate({id: parseInt(re.params.id)}, { name: req.body.name, message: req.body.message})
+  Chat.findOneAndUpdate({id: parseInt(req.params.id)}, { name: req.body.name, message: req.body.message})
   .then(chatItem => {
     res.status(201).json({
       chatEdited: chatItem
