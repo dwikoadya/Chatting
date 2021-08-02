@@ -2,6 +2,7 @@ import React from "react";
 import NameText from "../input/NameText.js";
 import ChatText from "../input/ChatText.js";
 import SendButton from "../button/SendButton.jsx";
+import '../css/style.css'
 
 export default function ChatForm() {
   return (
