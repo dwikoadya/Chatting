@@ -10,7 +10,7 @@ const should = chai.should();
 chai.use(chaiHTTP);
 
 describe("chats", function () {
-  // Chat.collection.drop();
+  Chat.collection.drop();
 
   beforeEach((done) => {
     let chat = new Chat({
@@ -25,7 +25,7 @@ describe("chats", function () {
   });
 
   afterEach((done) => {
-    // Chat.collection.drop();
+    Chat.collection.drop();
     done();
   });
 
@@ -38,10 +38,9 @@ describe("chats", function () {
         res.should.have.status(200);
         res.should.be.json;
         res.body.should.be.a("array");
-        res.body[0].should.have.property("id");
-        res.body[0].should.have.property("name");
+        res.body[0].should.have.property("_id");
+        res.body[0].should.have.property('name');
         res.body[0].should.have.property("message");
-        res.body[0].id.should.equal(1);
         res.body[0].name.should.equal("Dwiko");
         res.body[0].message.should.equal("Belajar TDD");
         done();
@@ -52,16 +51,14 @@ describe("chats", function () {
     chai
       .request(server)
       .post("/api/chats")
-      .send({ id: 1, name: "Dwiko", message: "Belajar TDD" })
+      .send({ id: Date.now(), name: "Dwiko", message: "Belajar TDD" })
       .end((err, res) => {
         if (err) console.log(err);
         res.should.have.status(201);
         res.should.be.json;
         res.body.should.be.a("object");
-        res.body.should.have.property("id");
-        res.body.should.have.property("name");
+        res.body.should.have.property('name');
         res.body.should.have.property("message");
-        res.body.id.should.equal(1);
         res.body.name.should.equal("Dwiko");
         res.body.message.should.equal("Belajar TDD");
         done();
@@ -82,7 +79,6 @@ describe("chats", function () {
             response.should.have.status(201);
             response.should.be.json;
             response.should.be.a("object");
-            response.body.should.have.property("id");
             response.body.should.have.property("name");
             response.body.should.have.property("message");
             response.body.should.have.property("_id");

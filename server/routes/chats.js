@@ -19,6 +19,7 @@ router.post('/', (req, res,) => {
     res.status(201).json({
       chatAdded: chatItem
     })
+    console.log(chatAdded)
   }).catch(err => {
     res.status(500).send({
       message: err.message || "Something Wrong while addding data"

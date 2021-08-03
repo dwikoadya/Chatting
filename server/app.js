@@ -8,7 +8,6 @@ const session = require('express-session')
 
 var chatRouter = require('./routes/chats');
 var userRouter = require('./routes/users');
-var indexRouter = require('./routes/index');
 
 mongoose.connect('mongodb://localhost:27017/chattingdb', {useNewUrlParser: true, useUnifiedTopology: true}) 
 
@@ -26,7 +25,6 @@ app.use(session ({
     saveUninitialized: 'true'
 }))
 
-app.use('/', indexRouter)
 app.use('/api/chats', chatRouter);
 app.use('/api/users', userRouter);
 

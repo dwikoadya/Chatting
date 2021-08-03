@@ -5,9 +5,13 @@ const bcrypt = require('bcrypt');
 const User = require("../models/user");
 const secret = "sinlay";
 
-router.get("./", (req, res) => {
-  res.send("respond with a resource");
-});
+
+router.get('/register', (req, res) => {
+  User.find({}, (err, users) => {
+    if (err) return res.status(500).json({err})
+    res.status(200).json(users)
+  })
+})
 
 router.post("/register", (req, res) => {
   let userName = req.body.userName;
@@ -44,7 +48,7 @@ router.post("/register", (req, res) => {
         user
           .save()
           .then((data) => {
-            console.log(data);
+            console.log(data)
             (response.message = "Register Success"),
               (response.data.email = email,
                 response.data.userName = userName,
