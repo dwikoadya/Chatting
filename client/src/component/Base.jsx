@@ -21,10 +21,10 @@ export default function Base() {
         <Route path="/login">
           <Login />
         </Route>
-        <Route path="/register">
+        <Route path="/api/users/register">
           <Register />
         </Route>
-        <Route path="/chat">
+        <Route path="/api/chats">
           <Chat />
         </Route>
       </Switch>

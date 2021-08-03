@@ -6,8 +6,8 @@ export default function Navigation() {
     <div>
       <Link to="/"> Home </Link>
       <Link to="/login"> Login </Link>
-      <Link to="/register"> Register </Link>
-      <Link to="/chat"> Chat </Link>
+      <Link to="/api/users/register"> Register </Link>
+      <Link to="/api/chats"> Chat </Link>
     </div>
   )
 }

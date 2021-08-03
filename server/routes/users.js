@@ -8,7 +8,7 @@ const secret = "sinlay";
 
 router.get('/register', (req, res) => {
   User.find({}, (err, users) => {
-    if (err) return res.status(500).json({err})
+    if (err) res.status(500).json({err})
     res.status(200).json(users)
   })
 })
@@ -26,7 +26,7 @@ router.post("/register", (req, res) => {
   };
 
   if (password !== retype) {
-    return res.status(500).json({
+      res.status(500).json({
       error: true,
       message: "password does not match",
     });
@@ -36,7 +36,7 @@ router.post("/register", (req, res) => {
     .then((result) => {
       if (result) {
         response.message = "Email Already Exist";
-        return res.status(500).json(response);
+        res.status(500).json(response);
       } else {
         var token = jwt.sign({ email: email }, secret);
         let user = new User({

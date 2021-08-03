@@ -1,10 +1,9 @@
 import React from "react";
 import "../css/style.css";
 import "../css/timeline.css";
-import ReactMarkdown from 'react-markdown'
 
 export default function ChatItem(props) {
-  const timestamps = props.chat.id;
+  const timestamp = props.chat.id;
   return (
     <div className="container py-2">
       <div className="qa-message-list" id="wallmessages">
@@ -18,7 +17,7 @@ export default function ChatItem(props) {
                 />
               </div>
               <div className="user-detail">
-                <div className="d-flex justify-content-between name d-flex-handle">
+                <div className="d-flex justify-content-between name d-flex handle">
                   <h5>{props.chat.name}</h5>
                   <button
                     className="btn btn-link px-0 py-0"
@@ -33,16 +32,22 @@ export default function ChatItem(props) {
                 </div>
                 <div className="post-meta">
                   <div className="asker-meta">
-                    <span className="qa-message-what"/>
+                    <span className="qa-message-what"></span>
                     <span className="qa-message-when">
-                      <span className="qa-message-when-data">{Intl.DateTimeFormat('en-US', {year: 'numeric', month:'2-digit', day:'2-digit'}).format(timestamps)}</span>
+                      <span className="qa-message-when-data">
+                        {Intl.DateTimeFormat("en-US", {
+                          year: "numeric",
+                          month: "2-digit",
+                          day: "2-digit",
+                        }).format(timestamp)}
+                      </span>
                     </span>
                   </div>
                 </div>
               </div>
             </div>
             <div className="qa-message-content">
-              <ReactMarkdown source={props.chat.message} className="mb-0 text-small" />
+              {props.chat.message}
             </div>
           </div>
         </div>

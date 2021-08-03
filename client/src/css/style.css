@@ -32,6 +32,13 @@ body {
   margin-bottom: auto;
 }
 
+/* .btn-circle {
+  width: 200px;
+  height: 50px;
+  line-height: 1.33;
+  border-radius: 35px;
+} */
+
 .btn-circle2 {
   width: 80px;
   height: 70px;
@@ -39,7 +46,7 @@ body {
   font-size: 24px;
   line-height: 1.33;
   border-radius: 35px;
-  background-color: rgba(0, 0, 0, 0.54)
+  background-color: rgba(0, 0, 0, 0.54);
 }
 
 .media-body {
@@ -50,12 +57,7 @@ body {
   font-size: 0.9rem;
 }
 
-.message-box {
-  height: 510px;
-  overflow-y: scroll;
-}
-
-.chat-box {
+.messages-box, .chat-box {
   height: 510px;
   overflow-y: scroll;
 }
@@ -66,15 +68,15 @@ body {
 
 input::placeholder {
   font-size: 0.9rem;
-  color: #999
+  color: #999;
 }
 
 .arrow_box {
   position: relative;
-
+  background: #f0f2f3;
 }
 
-.arrow_box::after {
+.arrow_box:after, .arrow_box:before {
   right: 100%;
   top: 45%;
   content: " ";
@@ -82,20 +84,13 @@ input::placeholder {
   width: 0;
   position: absolute;
   pointer-events: none;
+}
+
+.arrow_box:after {
   border-color: rgba(136, 183, 213, 0);
   border-right-color: #f0f2f3;
   border-width: 12px;
   margin-top: -30px;
-}
-
-.arrow_box::before {
-  right: 100%;
-  top: 45%;
-  content: " ";
-  height: 0;
-  width: 0;
-  position: absolute;
-  pointer-events: none;
 }
 
 .column {
@@ -106,15 +101,15 @@ input::placeholder {
 }
 
 .msg_send_btn {
-  background: #e9d362 none repeat scroll 0 0;
-  border: none;
-  border-radius: 50%;
-  color: #333333;
-  cursor: pointer;
-  font-size: 20px;
-  height: 50px;
-  right: 0;
-  top: 11px;
+background: #e9d362 none repeat scroll 0 0;
+border:none;
+border-radius: 50%;
+color: #333333;
+cursor: pointer;
+font-size: 20px;
+height: 50px;
+right: 0;
+top: 11px;
   width: 50px;
   margin-left: 10px;
   margin-top: 5px;
