@@ -4,8 +4,8 @@ import axios from "axios";
 import { Component } from "react";
 
 const request = axios.create({
-  baseURL: "http://localhost:3001/api/users/",
-  timeout: 1000,
+  baseURL: "http://localhost:3001/api/users",
+  timeout: 15000,
   headers: { "X-Custom-Header": "foobar" },
 })
 
@@ -21,11 +21,12 @@ export default class Register extends Component {
   }
 
   addUser(userData) {
+    console.log(this.state.data)
     this.setState((state) => ({
       data: [...state.data, userData],
     }));
     request
-    .post(`register`, userData)
+    .post(`/register`, userData)
     .then(response => {
       console.log(response.data)
       console.log('User Berhasil Ditambahkan')
