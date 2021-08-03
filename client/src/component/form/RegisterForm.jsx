@@ -1,6 +1,4 @@
 import React, { Component } from "react";
-import Text from "../input/Text";
-import Password from "../input/Password";
 import Card from "../Card";
 
 export default class RegisterForm extends Component {
@@ -10,25 +8,24 @@ export default class RegisterForm extends Component {
       username: "",
       email: "",
       password: "",
-      retype: ""
+      retype: "",
+      showPassword: false,
+      showRetype: false
     };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.setPassword = this.setPassword.bind(this)
+    this.setRetype = this.setRetype.bind(this)
   }
 
   handleChange(event) {
-    console.log(event.target.value)
     this.setState({
-      value: event.target.value,
+      [event.target.name]: event.target.value,
     });
   }
 
   handleSubmit(event) {
-    console.log(this.state.email)
-    console.log(this.state.username)
-    console.log(this.state.password)
-    console.log(this.state.retype)
     this.props.addUser({
       username: this.state.username,
       email: this.state.email,
@@ -43,6 +40,14 @@ export default class RegisterForm extends Component {
     event.preventDefault();
   }
 
+  setPassword() {
+    this.setState({showPassword: !this.state.showPassword})
+  }
+
+  setRetype() {
+    this.setState({showRetype: !this.state.showRetype})
+  }
+
   render() {
     return (
       <div className="container vh-100">
@@ -50,34 +55,80 @@ export default class RegisterForm extends Component {
           <div className="col self-align-center">
             <Card title="Register">
               <form onSubmit={this.handleSubmit}>
-                <Text
-                  label="Username"
-                  id="userName"
-                  name="userName"
-                  onChange={this.handleChange}
-                  value={this.state.username}
-                />
-                <Text
-                  label="Email"
-                  id="email"
-                  name="email"
-                  onChange={this.handleChange}
-                  value={this.state.email}
-                />
-                <Password
-                  label="Password"
-                  id="password"
-                  name="password"
-                  onChange={this.handleChange}
-                  value={this.state.password}
-                />
-                <Password
-                  label="Confirm Password"
-                  id="retype"
-                  name="retype"
-                  onChange={this.handleChange}
-                  value={this.state.retype}
-                />
+                <div className="form-group">
+                  <label htmlFor="username"> Username </label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    name="username"
+                    id="username"
+                    onChange={this.handleChange}
+                    value={this.state.username}
+                  />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="email"> Email </label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    name="email"
+                    id="email"
+                    onChange={this.handleChange}
+                    value={this.state.email}
+                  />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="password">Password</label>
+                  <div className="input-group">
+                    <input
+                      className="form-control"
+                      name="password"
+                      id="password"
+                      type={this.state.showPassword ? "text" : "password"}
+                      onChange={this.handleChange}
+                      value={this.state.password}
+                    />
+                    <div className="input group-append">
+                      <button
+                        type="button"
+                        onClick={() => this.setPassword()}
+                        className="btn btn-primary"
+                      >
+                        {this.state.showPassword ? (
+                          <i className="fa fa-eye-slash"></i>
+                        ) : (
+                          <i className="fa fa-eye"></i>
+                        )}
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <div className="form-group">
+                  <label htmlFor="retype">Confirm Password</label>
+                  <div className="input-group">
+                    <input
+                      className="form-control"
+                      name="retype"
+                      id="retype"
+                      type={this.state.showRetype ? "text" : "password"}
+                      onChange={this.handleChange}
+                      value={this.state.retype}
+                    />
+                    <div className="input group-append">
+                      <button
+                        type="button"
+                        onClick={() => this.setRetype()}
+                        className="btn btn-primary"
+                      >
+                        {this.state.showRetype ? (
+                          <i className="fa fa-eye-slash"></i>
+                        ) : (
+                          <i className="fa fa-eye"></i>
+                        )}
+                      </button>
+                    </div>
+                  </div>
+                </div>
                 <button className="btn btn-primary" type="submit">
                   Register
                 </button>
