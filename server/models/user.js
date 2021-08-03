@@ -3,10 +3,10 @@ const bcrypt = require('bcrypt');
 const saltRounds = 10
 
 const userSchema = new mongoose.Schema({
-    userName: { type: String, required: true},
-    email: { type: String, required: true},
-    password: { type: String, required: true},
-    token: { type: String}
+    username: String,
+    email: String,
+    password: String,
+    token: String
 })
 
 userSchema.pre('save', function (next){
