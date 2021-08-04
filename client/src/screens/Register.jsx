@@ -32,7 +32,7 @@ export default class Register extends Component {
       console.log('User Berhasil Ditambahkan')
     })
     .catch(err => {
-      console.log('rusak' ,err)
+      console.log(err)
     })
   }
 

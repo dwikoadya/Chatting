@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import ChatForm from "../component/form/ChatForm";
-import ChatList from "../component/ChatList"
-// import "../css/style.css";
+import ChatList from "../component/ChatList";
+import "../css/style.css";
 import axios from "axios";
-// import io from "socket.io-client";
+import io from "socket.io-client";
 
-// const socket = io("http://localhost:3001");
+const socket = io("http://localhost:3001");
 
 const request = axios.create({
   baseURL: "http://localhost:3001/api/",
@@ -33,17 +33,17 @@ export default class ChatBox extends Component {
     this.loadChat();
     this.scrollToBottom();
 
-    // socket.emit("delete chat", "dikirim");
+    socket.emit("delete chat", "dikirim");
 
-    // socket.on("load chat", () => {
-    //   this.loadChat();
-    // });
+    socket.on("load chat", () => {
+      this.loadChat();
+    });
 
-    // socket.on("delete chat", (id) => {
-    //   this.setState((state) => ({
-    //     data: state.data.filter((chatData) => chatData.id !== id),
-    //   }));
-    // });
+    socket.on("delete chat", (id) => {
+      this.setState((state) => ({
+        data: state.data.filter((chatData) => chatData.id !== id),
+      }));
+    });
   }
 
   componentDidUpdate() {
@@ -66,16 +66,15 @@ export default class ChatBox extends Component {
   };
 
   addChat(chatData) {
-    console.log(chatData)
     this.setState((state) => ({
       data: [...state.data, chatData],
     }));
     request
       .post(`chats`, chatData)
       .then((response) => {
-        console.log(response)
+        console.log(response);
         console.log("Data Berhasil di tambahkan");
-        // socket.emit("add chat");
+        socket.emit("add chat");
       })
       .catch((err) => {
         this.setState((state) => ({
@@ -97,7 +96,7 @@ export default class ChatBox extends Component {
       .delete(`chats/${id}`)
       .then((response) => {
         console.log("Data Berhasil Dihapus");
-        // socket.emit("delete chat", id);
+        socket.emit("delete chat", id);
       })
       .catch((err) => {
         alert(err);
