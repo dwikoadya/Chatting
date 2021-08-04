@@ -50,8 +50,7 @@ router.post("/register", (req, res) => {
           .then((data) => {
             (response.message = "Register Success"),
               (response.data.email = email,
-                response.data.username = username,
-                response.data.password = password
+                response.data.username = username
               );
             response.token = token;
             res.status(200).json(response);
